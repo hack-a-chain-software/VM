@@ -5,6 +5,7 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
+import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 import { useNear } from "../data/near";
 import ConfirmTransactions from "./ConfirmTransactions";
 import VM from "../vm/vm";
@@ -240,36 +241,40 @@ export const Widget = React.forwardRef((props, forwardedRef) => {
   ]);
 
   return element !== null && element !== undefined ? (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={() => {
-        setElement(null);
-      }}
-      resetKeys={[element]}
-    >
-      <>
-        {element}
-        {transactions && (
-          <ConfirmTransactions
-            transactions={transactions}
-            onHide={() => setTransactions(null)}
-            networkId={networkId}
-          />
-        )}
-        {commitRequest && (
-          <CommitModal
-            show={true}
-            widgetSrc={src}
-            data={commitRequest.data}
-            force={commitRequest.force}
-            onHide={() => setCommitRequest(null)}
-            onCommit={commitRequest.onCommit}
-            onCancel={commitRequest.onCancel}
-            networkId={networkId}
-          />
-        )}
-      </>
-    </ErrorBoundary>
+    <ChakraProvider>
+      <CSSReset />
+
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          setElement(null);
+        }}
+        resetKeys={[element]}
+      >
+        <>
+          {element}
+          {transactions && (
+            <ConfirmTransactions
+              transactions={transactions}
+              onHide={() => setTransactions(null)}
+              networkId={networkId}
+            />
+          )}
+          {commitRequest && (
+            <CommitModal
+              show={true}
+              widgetSrc={src}
+              data={commitRequest.data}
+              force={commitRequest.force}
+              onHide={() => setCommitRequest(null)}
+              onCommit={commitRequest.onCommit}
+              onCancel={commitRequest.onCancel}
+              networkId={networkId}
+            />
+          )}
+        </>
+      </ErrorBoundary>
+    </ChakraProvider>
   ) : (
     loading ?? Loading
   );

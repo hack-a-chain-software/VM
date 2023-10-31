@@ -1,4 +1,4 @@
-## Near Social VM
+## Hackachain Near BOS VM
 
 AKA "BOS VM"
 

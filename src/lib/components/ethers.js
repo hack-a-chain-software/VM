@@ -16,11 +16,13 @@ export const Web3ConnectButton = (props) => {
       disabled={(wallet ? !disconnect : !connect) || connecting}
       onClick={() => (wallet ? disconnect?.(wallet) : connect?.())}
     >
-      {connecting
-        ? props.connectingLabel ?? "Connecting"
-        : wallet
-        ? props.disconnectLabel ?? "Disconnect Web3 Wallet"
-        : props.connectLabel ?? "Connect Web3 Wallet"}
+      <div>
+        {connecting
+          ? props.connectingLabel ?? "Connecting"
+          : wallet
+          ? props.disconnectLabel ?? "Disconnect Web3 Wallet"
+          : props.connectLabel ?? "Connect Web3 Wallet"}
+      </div>
     </Button>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Button } from "@chakra-ui/react";
 
 export const EthersProviderContext = React.createContext(null);
 
@@ -10,10 +11,8 @@ export const Web3ConnectButton = (props) => {
       : [{}];
 
   return (
-    <button
-      className={`btn ${props.className} ${
-        connecting || wallet ? "btn-outline-secondary" : "btn-outline-primary"
-      }`}
+    <Button
+      {...props}
       disabled={(wallet ? !disconnect : !connect) || connecting}
       onClick={() => (wallet ? disconnect?.(wallet) : connect?.())}
     >
@@ -22,6 +21,6 @@ export const Web3ConnectButton = (props) => {
         : wallet
         ? props.disconnectLabel ?? "Disconnect Web3 Wallet"
         : props.connectLabel ?? "Connect Web3 Wallet"}
-    </button>
+    </Button>
   );
 };

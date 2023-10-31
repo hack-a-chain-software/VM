@@ -64,6 +64,7 @@ import * as Toggle from "@radix-ui/react-toggle";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import * as Toolbar from "@radix-ui/react-toolbar";
 import * as RadixTooltip from "@radix-ui/react-tooltip";
+import { Button } from "@chakra-ui/react";
 
 const LoopLimit = 1000000;
 const MaxDepth = 32;
@@ -648,6 +649,8 @@ class VmStack {
       );
     } else if (element === "InfiniteScroll") {
       return <InfiniteScroll {...attributes}>{children}</InfiniteScroll>;
+    } else if (element === "Button") {
+      return <Button {...attributes}>{children}</Button>;
     } else if (element === "Tooltip") {
       return <Tooltip {...attributes}>{children}</Tooltip>;
     } else if (element === "OverlayTrigger") {

@@ -10,6 +10,8 @@ export const Web3ConnectButton = (props) => {
       ? ethersProviderContext?.useConnectWallet()
       : [{}];
 
+  console.log('Web3ConnectButton', props)
+
   return (
     <Button
       {...props}

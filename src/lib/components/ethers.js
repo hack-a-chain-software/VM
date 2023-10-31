@@ -3,27 +3,26 @@ import { Button } from "@chakra-ui/react";
 
 export const EthersProviderContext = React.createContext(null);
 
-export const Web3ConnectButton = (props) => {
+export const Web3ConnectButton = ({ connectingLabel, disconnectLabel, connectLabel, ...args}) => {
   const ethersProviderContext = useContext(EthersProviderContext);
   const [{ wallet, connecting }, connect, disconnect] =
     ethersProviderContext?.useConnectWallet
       ? ethersProviderContext?.useConnectWallet()
       : [{}];
 
-  console.log('Web3ConnectButton', props)
-
   return (
-    <button
+    <Button
+      {...args}
       disabled={(wallet ? !disconnect : !connect) || connecting}
       onClick={() => (wallet ? disconnect?.(wallet) : connect?.())}
     >
       <div>
         {connecting
-          ? props.connectingLabel ?? "Connecting"
+          ? connectingLabel ?? "Connecting"
           : wallet
-          ? props.disconnectLabel ?? "Disconnect Web3 Wallet"
-          : props.connectLabel ?? "Connect Web3 Wallet"}
+          ? disconnectLabel ?? "Disconnect Web3 Wallet"
+          : connectLabel ?? "Connect Web3 Wallet"}
       </div>
-    </button>
+    </Button>
   );
 };

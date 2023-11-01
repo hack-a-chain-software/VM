@@ -165,6 +165,7 @@ const ApprovedTagsCustom = {
   iframe: false,
   Button: true,
   Web3Connect: false,
+  Text: true,
 };
 
 // will be dynamically indexed into for fetching specific elements

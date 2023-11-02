@@ -725,12 +725,12 @@ class VmStack {
       }
       return <RadixComp {...attributes}>{newChildren}</RadixComp>;
     } else if (withChildren === true) {
-      console.log('withChildren === true')
-      console.log(window[element])
+      if (window[element]) {
+        return React.createElement(window[element], { ...attributes })
+      }
+
       return React.createElement(element, { ...attributes }, ...children);
     } else if (withChildren === false) {
-      console.log('withChildren === false')
-      console.log(window[element])
       return React.createElement(element, { ...attributes });
     } else {
       throw new Error("Unsupported element: " + element);

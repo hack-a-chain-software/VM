@@ -727,6 +727,8 @@ class VmStack {
     } else if (withChildren === true) {
       if (window[element]) {
         const Component = window[element];
+        console.log('Component', Component)
+        console.log(Component())
 
         return <Component {...attributes}>{children}</Component>
       }

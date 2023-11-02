@@ -726,9 +726,7 @@ class VmStack {
       return <RadixComp {...attributes}>{newChildren}</RadixComp>;
     } else if (withChildren === true) {
       if (window[element]) {
-        const Component = window[element];
-        console.log('Component', Component)
-        console.log(Component())
+        const Component = window[element]();
 
         return <Component {...attributes}>{children}</Component>
       }
